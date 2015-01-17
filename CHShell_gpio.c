@@ -187,12 +187,6 @@
     
     char readValue[20];
     
-    GPIO_InitDef.GPIO_Pin = GPIO_Pin_All;
-    GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT;
-    GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_InitDef.GPIO_Speed = GPIO_Speed_50MHz;
-    
     for (i = 0; i < 15; i++){
      switch(Gpio->gpioName){ 
       case cmdGPIOA:
