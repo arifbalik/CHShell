@@ -15,16 +15,16 @@
        You should have received a copy of the GNU General Public License
        along with this program.  If not, see <http://www.gnu.org/licenses/>.
    */
-    #include "CHShell_gpio.h" 
-    #include "CHShell_usart.h"
+   	#include "chshell_gpio.h" 
+	  #include "chshell_usart.h"
     #include <string.h>
-    #include <stdio.h>
+		#include <stdio.h>
     #include <stm32f4xx_gpio.h>
-   
-    #define error 0
+	 
+	  #define error 0
 
     //GPIO Pin Name
-    #define GPIO_NAME_COUNT 15
+		#define GPIO_NAME_COUNT 15
     #define cmdGPIOA 'a'
     #define cmdGPIOB 'b'
     #define cmdGPIOG 'c'
@@ -178,7 +178,7 @@
       return gpioSpeedDefineList[i];
      }
    }
-    return gpioSpeedDefineList[0];
+		return gpioSpeedDefineList[0];
  }
    int gpioCmdProcess(gpioCmd* Gpio){
     
@@ -186,6 +186,12 @@
     GPIO_TypeDef* gpioName;
     
     char readValue[20];
+    
+    GPIO_InitDef.GPIO_Pin = GPIO_Pin_All;
+    GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT;
+    GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
+    GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
+    GPIO_InitDef.GPIO_Speed = GPIO_Speed_50MHz;
     
     for (i = 0; i < 15; i++){
      switch(Gpio->gpioName){ 
@@ -238,6 +244,68 @@
      CHTerminalPrint(GPIO_RESET_OK);
     }
     return 1;
-  }
+	}
 
-  
+int gpioCmdParse(shell_cmd_args *args)
+{
+	gpioCmd gpioDef;
+	
+	gpioDef.gpioPin = "a";
+	int i;
+		for(i = 0; i<args->count;i = i+2){
+			if(!strcmp(args->args[i].val,"-mode")){
+				gpioDef.gpioMode=args->args[++i].val;
+				CHTerminalPrint(" Mode Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else if(!strcmp(args->args[i].val,"-port")){
+				gpioDef.gpioName=*    args->args[++i].val;
+				CHTerminalPrint(" Port Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else if(!strcmp(args->args[i].val,"-type")){
+				gpioDef.gpioPinType=  args->args[++i].val;
+				CHTerminalPrint(" Type Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else if(!strcmp(args->args[i].val,"-speed")){
+				gpioDef.gpioSpeed=    args->args[++i].val;
+				CHTerminalPrint(" Speed Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else if(!strcmp(args->args[i].val,"-pin")){
+				gpioDef.gpioPin=      args->args[++i].val;
+				CHTerminalPrint(" Pin Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else if(!strcmp(args->args[i].val,"-otype")){
+				gpioDef.gpioOType=    args->args[++i].val;
+				CHTerminalPrint(" Output Type Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else if(!strcmp(args->args[i].val,"-pupd")){
+				gpioDef.gpioPuPd=     args->args[++i].val;
+				CHTerminalPrint(" Pull-up/down Select: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+			}
+			else{
+				if(strstr(args->args[i].val,"-")!=NULL){
+				CHTerminalPrint(" Error - Unknown parameter: ");
+				CHTerminalPrint(args->args[i].val);
+				CHTerminalPrint("\n");
+				i++;
+					return 0;
+				}
+			}
+			i--;
+		}
+		gpioCmdProcess(&gpioDef);
+		return 0;
+}

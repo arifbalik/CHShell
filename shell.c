@@ -18,9 +18,11 @@
  */
 
 #include "shell.h"
-#include "CHShell_usart.h"
-#include "CHShell_cmd_definations.h"
+#include "chshell/chshell_usart.h"
+#include "chshell/chshell_cmd_definations.h"
 #include <string.h>
+
+
 
 
 int shell_cmd_help(shell_cmd_args *args)
@@ -168,5 +170,9 @@ int shell_process_cmds(shell_cmds *cmds, char *cmd_line)
 }
 int shell_process(char *cmd_line)
 {
-		 return shell_process_cmds(&komutlar, cmd_line);
+	char* cmdEnd;
+	   if(isDefinationsData(cmd_line)){
+			strcpy(cmdEnd,getCmdData(cmd_line));
+		 }
+		 return shell_process_cmds(&komutlar, cmdEnd);
 }
