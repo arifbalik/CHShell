@@ -15,7 +15,7 @@
 #include <stdio.h>                      /* standard I/O .h-file               */
 #include <string.h>
 #include <ctype.h>                      /* character functions                */
-#include "terminal.h"                   /* getline function 				  */
+#include "..\terminal.h"                   /* getline function 				  */
 #include "chshell_gpio.h"
 #include "chshell_system.h"
 #include "chshell_adc.h"
