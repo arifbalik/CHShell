@@ -14,6 +14,6 @@
 #ifndef _CHSHELL_CORE_H
 #define _CHSHELL_CORE_H
 
-	extern int token(char* cmdbuf);
+	extern int chshellStart();
 	
 #endif

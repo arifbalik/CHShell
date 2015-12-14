@@ -59,7 +59,7 @@ uint32_t HAL_GetTick(void) {
 }
 #endif
 
-#define MAX_CMD_SIZE 70 
+
 
 /** @addtogroup STM32F7xx_HAL_Examples
   * @{
@@ -88,7 +88,7 @@ extern int stdout_init (void); //Display
   * @retval None
   */
 int main(void){
-	char cmdbuf[MAX_CMD_SIZE]; //klavyeden alinan karakter buraya akar
+
 	
   /* This project template calls firstly two functions in order to configure MPU feature 
      and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
@@ -141,15 +141,9 @@ int main(void){
 		//GNU GPL v3 Licence
 	printf ( " Copyright (C) 2015  Arif Ahmet Balik \n  This program is free software: you can redistribute it and/or modify \n  it under the terms of the GNU General Public License as published by \n  the Free Software Foundation, either version 3 of the License, or \n  (at your option) any later version. \n  This program is distributed in the hope that it will be useful, \n  but WITHOUT ANY WARRANTY; without even the implied warranty of \n  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the \n  GNU General Public License for more details. \n  You should have received a copy of the GNU General Public License \n  along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n" );                           
 	
-  
-	/* Infinite loop */
-  while (1){
-		printf("root@chshell>");
-		
-		while(!getline (&cmdbuf[0], sizeof (cmdbuf))); //waiting for the enter or limit of command
-		
-		token(cmdbuf);
-	}
+    chshellStart();
+
+  //Never back here
 }
 
 

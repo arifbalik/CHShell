@@ -1,14 +1,29 @@
-#include "tm_stm32_adc.h"
+  /*
+       Copyright (C) 2015  Arif Ahmet Balik
+       This program is free software: you can redistribute it and/or modify
+       it under the terms of the GNU General Public License as published by
+       the Free Software Foundation, either version 3 of the License, or
+       (at your option) any later version.
+       This program is distributed in the hope that it will be useful,
+       but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+       GNU General Public License for more details.
+       You should have received a copy of the GNU General Public License
+       along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   */
+
+#include "tm_stm32_adc.h"		/* Tilen Majerle's library	*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "../getopt.h"
 
+static int adc_flag;
 ADC_TypeDef* adc = ADC1;
 TM_ADC_Channel_t channel = TM_ADC_Channel_0;
 
 TM_ADC_Channel_t adc_channel_list[] = {
-	TM_ADC_Channel_0, 			 /*!< Operate with ADC channel 0 */
+	TM_ADC_Channel_0, 		 /*!< Operate with ADC channel 0 */
 	TM_ADC_Channel_1,        /*!< Operate with ADC channel 1 */
 	TM_ADC_Channel_2,        /*!< Operate with ADC channel 2 */
 	TM_ADC_Channel_3,        /*!< Operate with ADC channel 3 */
@@ -70,7 +85,7 @@ TM_ADC_Channel_t getChannel(char* channel) {
 	while(strcmp(adc_channel_name[i], channel) && i < sizeof(adc_channel_name)) i++;
 	return adc_channel_list[i]; 
 }
-int adc_flag;	
+	
 int ch_getopt_adc(int argc, char** argv)
 {
 	int c;
@@ -82,13 +97,13 @@ int ch_getopt_adc(int argc, char** argv)
              We distinguish them by their indices. */
           {"module",  	required_argument, 0, 'm'},
           {"channel",  	required_argument, 0, 'c'},
-					{"read",  	no_argument, &adc_flag, 1},
+		  {"read",  	no_argument, &adc_flag, 1},
           {0, 0, 0, 0}
         };
       /* getopt_long stores the option index here. */
       int option_index = 0;
 
-				c = getopt_long_only(argc, argv, "g:p:l:m:s:",
+	  c = getopt_long_only(argc, argv, "g:p:l:m:s:",
                        long_options, &option_index);
 
       /* Detect the end of the options. */
@@ -107,11 +122,12 @@ int ch_getopt_adc(int argc, char** argv)
           printf ("\n");
           
           break;
-				case 'm':
-					adc = getModule(optarg);
+		case 'm':
+			adc = getModule(optarg);
+			adc_flag = 0; // for ADC init function calling
           break;
-				case 'c':
-					channel = getChannel(optarg);
+		case 'c':
+			channel = getChannel(optarg);
           break;
 				
         case '?':
@@ -130,12 +146,8 @@ int ch_getopt_adc(int argc, char** argv)
 				putchar(0x08);
 				putchar(' ');
 				putchar(0x08);
-				//while(1){}
-				//osDelay(200);
 			}
 		}
-			
-
 
   /* Print any remaining command line arguments (not options). */
   if (optind < argc)
@@ -147,6 +159,7 @@ int ch_getopt_adc(int argc, char** argv)
     }
 		optind = 0;
 		
-		TM_ADC_Init(adc,channel);
+	if(!adc_flag) TM_ADC_Init(adc,channel);
+
 	return 1;
 }
