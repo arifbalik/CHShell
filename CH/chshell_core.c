@@ -57,8 +57,6 @@ chshell_cmd ch_cmd[] = {
 };
 
 int chshellStart(){
-
-	char* tok;
 	int i = 0;
 
 	while(1){
@@ -110,6 +108,7 @@ int ch_call_module(){
  *	@return 	if argv is empty than function return 0, otherwise return 1
 */
 int ch_fill_argv(){
+	char* tok;
 	argc = 0;
 	
 	for (tok = strtok(cmdbuf, " "); tok && *tok; tok = strtok(NULL, " ")) argv[argc++] = tok; //printf("Part %i, value: %s\n",argc, argv[argc]);
