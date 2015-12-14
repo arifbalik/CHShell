@@ -1,0 +1,10 @@
+.\objects\stdin_keyboard.o: stdin_keyboard.c
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.0.0\USB\Include\rl_usb.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\RTOS\RTX\INC\cmsis_os.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.0.0\USB\Include\usb_def.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.0.0\USB\Include\usb_cdc.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.0.0\USB\Include\usb_hid.h
+.\objects\stdin_keyboard.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.0.0\USB\Include\usb_msc.h
