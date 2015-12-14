@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "getopt.h"
+#include "../getopt.h"
 
 long color_def[] = {
 	GLCD_COLOR_GREEN,

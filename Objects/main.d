@@ -42,4 +42,4 @@
 .\objects\main.o: terminal.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
-.\objects\main.o: chshell_core.h
+.\objects\main.o: .\CH\chshell_core.h

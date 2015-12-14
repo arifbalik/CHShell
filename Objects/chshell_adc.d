@@ -1,4 +1,4 @@
-.\objects\chshell_adc.o: chshell_adc.c
+.\objects\chshell_adc.o: CH\chshell_adc.c
 .\objects\chshell_adc.o: .\TM\tm_stm32_adc.h
 .\objects\chshell_adc.o: .\TM\stm32fxxx_hal.h
 .\objects\chshell_adc.o: C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\Drivers\CMSIS\Device\ST\STM32F7xx\Include\stm32f7xx.h
@@ -39,4 +39,4 @@
 .\objects\chshell_adc.o: .\TM\tm_stm32_gpio.h
 .\objects\chshell_adc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\chshell_adc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\chshell_adc.o: getopt.h
+.\objects\chshell_adc.o: CH\../getopt.h

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "getopt.h"
+#include "../getopt.h"
 
 ADC_TypeDef* adc = ADC1;
 TM_ADC_Channel_t channel = TM_ADC_Channel_0;
@@ -29,6 +29,7 @@ TM_ADC_Channel_t adc_channel_list[] = {
 	TM_ADC_Channel_18       /*!< Operate with ADC channel 18 */
 };
 char* adc_channel_name[] = {
+	"0",
 	"1",
 	"2",
 	"3",
@@ -126,8 +127,11 @@ int ch_getopt_adc(int argc, char** argv)
 			printf("ADC Reading : ");
 			while(1){
 				printf("%d",TM_ADC_Read(adc,channel));
-				stdout_putchar(127);
-				//stdout_putchar(0x08);
+				putchar(0x08);
+				putchar(' ');
+				putchar(0x08);
+				//while(1){}
+				//osDelay(200);
 			}
 		}
 			

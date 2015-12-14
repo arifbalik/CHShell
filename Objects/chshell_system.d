@@ -1,4 +1,4 @@
-.\objects\chshell_system.o: chshell_system.c
+.\objects\chshell_system.o: CH\chshell_system.c
 .\objects\chshell_system.o: C:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.3.0\Drivers\STM32F7xx_HAL_Driver\Inc\stm32f7xx_hal.h
 .\objects\chshell_system.o: C:\Documents and Settings\Administrator\Desktop\cc\chshell\RTE\Device\STM32F746NGHx\stm32f7xx_hal_conf.h
 .\objects\chshell_system.o: C:\Documents and Settings\Administrator\Desktop\cc\chshell\RTE\RTE_Components.h
@@ -36,4 +36,4 @@
 .\objects\chshell_system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\chshell_system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\chshell_system.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\chshell_system.o: getopt.h
+.\objects\chshell_system.o: CH\../getopt.h

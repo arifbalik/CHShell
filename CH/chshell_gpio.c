@@ -16,7 +16,7 @@
     #include <string.h>
 		#include <stdio.h>
 		#include <stdlib.h>
-		#include "getopt.h"
+		#include "../getopt.h"
 		#include "chshell_gpio.h"
 	
 	GPIO_TypeDef* gpioPortDefineList[] = {
