@@ -34,59 +34,47 @@ typedef struct{
 
 //Mudoule command and function
 chshell_cmd ch_cmd[] = {
-	{
-		"gpio",
-		&ch_getopt_gpio
-	},
-	{
-		"reboot",
-		&ch_system_reboot
-	},
-	{
-		"clear",
-		&ch_system_clear
-	},
-	{
-		"color",
-		&ch_system_color
-	},
-	{
-		"adc",
-		&ch_getopt_adc
-	},
+	{ "gpio", 	&ch_getopt_gpio   },
+	{ "reboot", &ch_system_reboot },
+	{ "clear", 	&ch_system_clear  },
+	{ "color", 	&ch_system_color  },
+	{ "adc", 	&ch_getopt_adc    },
+	{ 0,        &unknown_command  }
 };
 
 int chshellStart(){
 	int i = 0;
-
+	char* tok;
 	while(1){
 		printf("root@chshell>");			
 		while(!getline (&cmdbuf[0], sizeof (cmdbuf))); //waiting for the enter or limit of command
 
-		if(!ch_fill_argv()) 
-			continue;
-			
-		ch_call_module();	
+		// \n and \r is a problem in parsing command. This function clear the \n and \r in stream data (cmdbuf)
+		i = 0;
+		while(cmdbuf[i] != NULL) i++; //find last index of the data 
+		//and delete \n and \r
+		cmdbuf[i-1] = NULL;
+		cmdbuf[i-2] = NULL;
+
+		//Getopt need argv type of data. This part split the cmdbuf and fill the argv  
+		argc = 0;
+		for (tok = strtok(cmdbuf, " "); tok && 
+			 *tok; tok = strtok(NULL, " ")) argv[argc++] = tok; //printf("Part %i, value: %s\n",argc, argv[argc]);
+
+		if(!argv[0]) //empty command detection
+			 continue;
+		//This part chechk the argv's first index and find the module. Than call the module default function (in chshell_cmd struct)
+		i = 0;
+		while(strcmp(argv[0],ch_cmd[i].ch_module_name) && //find module
+			  i < (sizeof(ch_cmd) / sizeof(chshell_cmd) - 1)) i++; //if there is no module name in argv[0] than this part call the unknown_command function
+		ch_cmd[i].ch_module_addr(argc,argv); //call module
 	}
 
-		return 1;
-	}
 
-/**
- *	@brief  	\n and \r is a problem in parsing command. In this function I clear the \n and \r in stream data (cmdbuf)
- *	@parameter  none
- *	@return 	none
-*/
-void clear_cmdbuf(){
-	int i = 0;
-
-	while(cmdbuf[i] != NULL) //find last index of the data
-		i++; 
-	//and delete \n and \r
-	cmdbuf[i-1] = NULL;
-	cmdbuf[i-2] = NULL;
+	return 1; //Never return
 }
 
+<<<<<<< Updated upstream
 /**
  *	@brief  	This function chechk the argv's first index and find the module. Than call the module default function (in chshell_cmd struct)
  *	@parameter  none
@@ -117,5 +105,10 @@ int ch_fill_argv(){
 		return 0;
 
 	return 1;
+=======
+int unknown_command(int x, char** y){
+	printf("Unknown Command!\n");
+	return 0;
+>>>>>>> Stashed changes
 }
 

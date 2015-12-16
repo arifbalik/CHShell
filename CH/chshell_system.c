@@ -9,6 +9,7 @@
 
 #include "../getopt.h"
 
+
 long color_def[] = {
 	GLCD_COLOR_GREEN,
 	GLCD_COLOR_BLACK,
@@ -93,31 +94,5 @@ int ch_system_color(int argc, char** argv){
 	return 1;
 }
 
-int ch_system_font(int argc, char** argv){
-  int index;
-  int c;
-
-  opterr = 0;
-  while ((c = getopt (argc, argv, "lb")) != -1)
-    switch (c)
-      {
-      case 'l':
-
-        break;
-			case 'b':
-
-        break;
-      case '?':
-        return 1;
-      default:
-        //abort ();
-			break;
-      }
-  
-  for (index = optind; index < argc; index++)
-    printf ("Non-option argument %s\n", argv[index]);
-	optind = 0;
-		return 1;
-}
 
 

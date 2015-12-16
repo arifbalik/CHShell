@@ -17,7 +17,6 @@
 	extern int ch_system_reboot(int argc, char** argv);
 	extern int ch_system_clear(int argc, char** argv);
 	extern int ch_system_color(int argc, char** argv);
-	extern int ch_system_font(int argc, char** argv);
 	
 #endif
 
