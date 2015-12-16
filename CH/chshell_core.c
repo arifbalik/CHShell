@@ -74,41 +74,8 @@ int chshellStart(){
 	return 1; //Never return
 }
 
-<<<<<<< Updated upstream
-/**
- *	@brief  	This function chechk the argv's first index and find the module. Than call the module default function (in chshell_cmd struct)
- *	@parameter  none
- *	@return 	if there is no defined module name in first index, function will return 0, otherwise return 1
-*/
-int ch_call_module(){
-	int i = 0;
-	while(strcmp(argv[0],ch_cmd[i].ch_module_name) && i < sizeof(ch_cmd)) i++;
-	if(i != sizeof(ch_cmd)) //meaningless entry detetcion
-		ch_cmd[i].ch_module_addr(argc,argv); //call module
-	else return 0;
-
-	return 1;
-}
-
-/**
- *	@brief  	Getopt need argv type of data. This line split the cmdbuf and fill the argv  
- *	@parameter  none
- *	@return 	if argv is empty than function return 0, otherwise return 1
-*/
-int ch_fill_argv(){
-	char* tok;
-	argc = 0;
-	
-	for (tok = strtok(cmdbuf, " "); tok && *tok; tok = strtok(NULL, " ")) argv[argc++] = tok; //printf("Part %i, value: %s\n",argc, argv[argc]);
-
-	if(!argv[0]) //empty command detection
-		return 0;
-
-	return 1;
-=======
 int unknown_command(int x, char** y){
 	printf("Unknown Command!\n");
 	return 0;
->>>>>>> Stashed changes
 }
 
