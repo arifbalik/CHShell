@@ -45,17 +45,17 @@ char* color[] = {
 	"white"
 };
 
-int ch_system_reboot(int argc, char** argv){
+int ch_module_reboot(int argc, char** argv){
 		HAL_NVIC_SystemReset();
 		return 1;
 }
-int ch_system_clear(int argc, char** argv){
+int ch_module_clear(int argc, char** argv){
 		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	  //GLCD_ClearScreen();  	
 	return 1;
 }
-int ch_system_color(int argc, char** argv){
-	int i = 0;
+int ch_module_color(int argc, char** argv){
+  int i = 0;
   int index;
   int c;
 
@@ -65,13 +65,13 @@ int ch_system_color(int argc, char** argv){
       {
       case 'f':
         while(strcmp(color[i],optarg) && i < 15) i++;
-				GLCD_SetForegroundColor (color_def[i]);
-				i = 0;
+			GLCD_SetForegroundColor (color_def[i]);
+			i = 0;
         break;
-			case 'b':
-				while(strcmp(color[i],optarg) && i < 15) i++;
-				GLCD_SetBackgroundColor (color_def[i]);
-				i = 0;
+		case 'b':
+			while(strcmp(color[i],optarg) && i < 15) i++;
+			GLCD_SetBackgroundColor (color_def[i]);
+			i = 0;
         break;
       case '?':
         if (optopt == 'c')

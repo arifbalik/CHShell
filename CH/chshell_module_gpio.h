@@ -15,7 +15,7 @@
 #ifndef _CHSHELL_GPIO_H
 #define _CHSHELL_GPIO_H
 
-	extern int ch_getopt_gpio(int argc, char** argv);
+	extern int ch_module_gpio(int argc, char** argv);
 	
 #endif
 

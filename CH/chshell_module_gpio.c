@@ -98,7 +98,7 @@ GPIO_TypeDef* getPort(char* port){
       return gpioPortDefineList[i];
    }
    
-int ch_getopt_gpio(int argc, char** argv)
+int ch_module_gpio(int argc, char** argv)
 {
   char* port;
   char* pin = "1";

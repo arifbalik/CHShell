@@ -14,9 +14,9 @@
 #ifndef _CHSHELL_SYSTEM_H
 #define _CHSHELL_SYSTEM_H
 
-	extern int ch_system_reboot(int argc, char** argv);
-	extern int ch_system_clear(int argc, char** argv);
-	extern int ch_system_color(int argc, char** argv);
+	extern int ch_module_reboot(int argc, char** argv);
+	extern int ch_module_clear(int argc, char** argv);
+	extern int ch_module_color(int argc, char** argv);
 	
 #endif
 
